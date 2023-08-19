@@ -36,6 +36,14 @@ impl CContext for KtfCContext<'_> {
         Allocator::free(self.core, memory.0)
     }
 
+    fn get_total_memory(&mut self) -> CResult<i32> {
+        Ok(1000000)
+    }
+
+    fn get_free_memory(&mut self) -> CResult<i32> {
+        Ok(1000000)
+    }
+
     fn data_ptr(&self, memory: CMemoryId) -> CResult<u32> {
         let base: u32 = read_generic(self.core, memory.0)?;
 

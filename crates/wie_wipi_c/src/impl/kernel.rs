@@ -115,6 +115,18 @@ async fn free(context: &mut dyn CContext, memory: CMemoryId) -> CResult<CMemoryI
     Ok(memory)
 }
 
+async fn get_total_memory(context: &mut dyn CContext) -> CResult<i32> {
+    log::debug!("MC_knlGetTotalMemory()");
+
+    context.get_total_memory()
+}
+
+async fn get_free_memory(context: &mut dyn CContext) -> CResult<i32> {
+    log::debug!("MC_knlGetFreeMemory()");
+
+    context.get_free_memory()
+}
+
 async fn get_resource_id(context: &mut dyn CContext, name: String, ptr_size: u32) -> CResult<i32> {
     log::trace!("MC_knlGetResourceID({}, {:#x})", name, ptr_size);
 
@@ -174,8 +186,8 @@ where
         alloc.into_body(),
         calloc.into_body(),
         free.into_body(),
-        gen_stub(23),
-        gen_stub(24),
+        get_total_memory.into_body(),
+        get_free_memory.into_body(),
         def_timer.into_body(),
         set_timer.into_body(),
         unset_timer.into_body(),

@@ -21,6 +21,8 @@ pub trait CContext: ByteRead + ByteWrite {
     fn alloc_raw(&mut self, size: u32) -> CResult<u32>;
     fn alloc(&mut self, size: u32) -> CResult<CMemoryId>;
     fn free(&mut self, memory: CMemoryId) -> CResult<()>;
+    fn get_total_memory(&mut self) -> CResult<i32>;
+    fn get_free_memory(&mut self) -> CResult<i32>;
     fn data_ptr(&self, memory: CMemoryId) -> CResult<u32>;
     fn register_function(&mut self, method: CMethodBody) -> CResult<u32>;
     async fn call_method(&mut self, address: u32, args: &[u32]) -> CResult<u32>;
