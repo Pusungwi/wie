@@ -37,7 +37,7 @@ impl CContext for KtfCContext<'_> {
     }
 
     fn get_total_memory(&mut self) -> CResult<i32> {
-        Ok(1000000)
+        Allocator::get_total_memory()
     }
 
     fn get_free_memory(&mut self) -> CResult<i32> {

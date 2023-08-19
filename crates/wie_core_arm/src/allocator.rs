@@ -78,6 +78,10 @@ impl Allocator {
         Ok(())
     }
 
+    pub fn get_total_memory() -> anyhow::Result<i32> {
+        Ok(HEAP_SIZE as _)
+    }
+
     fn find_address(core: &ArmCore, request_size: u32) -> Option<u32> {
         let mut cursor = HEAP_BASE;
         loop {
